@@ -1,0 +1,39 @@
+<ion-content padding>
+    <ion-toolbar color="primary">
+        <ion-title>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-4><h4>前端Blog</h4></ion-col>
+                    <ion-col col-4></ion-col>
+                    <ion-col col-2><h6>关于</h6></ion-col>
+                    <ion-col col-2><h6>登录</h6></ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-title>
+    </ion-toolbar>
+    <div style="margin-top: 15%">
+        <markdown  [data]="detail">
+        </markdown>
+    </div>
+    <ion-fab right middle>
+        <button ion-fab color="light">
+            <ion-icon name="build"></ion-icon>
+        </button>
+        <ion-fab-list side="top">
+            <button ion-fab  (click)="goTop()">
+                <ion-icon name="arrow-dropup-circle"></ion-icon>
+            </button>
+        </ion-fab-list>
+        <ion-fab-list side="left">
+            <button ion-fab  (click)="goBack()">
+                <ion-icon name="arrow-dropleft-circle"></ion-icon>
+            </button>
+        </ion-fab-list>
+        <ion-fab-list side="bottom">
+            <button ion-fab  (click)="goBack()">
+                <ion-icon name="bookmark"></ion-icon>
+            </button>
+        </ion-fab-list>
+    </ion-fab>
+
+</ion-content>
