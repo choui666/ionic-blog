@@ -46,7 +46,7 @@ export class HomePage implements OnInit {
         this.service.getContentList(pageIndex).subscribe((result:{list:any[],totalCount:number}) => {
             this.groups = result.list;
             this.currenPage = pageIndex;
-            this.totalePage = Math.ceil(result.totalCount/20)
+            this.totalePage = Math.ceil(result.totalCount/10)
         });
     }
 
