@@ -11,7 +11,7 @@ import { TagSearchPage } from '../tag-search/tag-search';
 export class HomePage implements OnInit {
 
     groups: { title: string, group: any[] }[] = [];
-    tags: { name: string, id: string, num: string }[] = [];
+    tags: { label: string, id: string, num: string }[] = [];
     @ViewChild(Content)
     content: Content;
     @ViewChild(FabButton)
@@ -21,18 +21,18 @@ export class HomePage implements OnInit {
     currenPage = 1;
     totalePage = 3;
 
-    prePage(){
-        this.searchCommit(this.currenPage-1);
+    prePage() {
+        this.searchCommit(this.currenPage - 1);
     }
 
-    nextPage(){
-        this.searchCommit(this.currenPage+1);
+    nextPage() {
+        this.searchCommit(this.currenPage + 1);
     }
 
-    constructor(public navCtrl: NavController, private service: IndexProvider, private   renderer2: Renderer2) {
+    constructor(public navCtrl: NavController, private service: IndexProvider, private renderer2: Renderer2) {
         this.searchCommit();
-        this.service.getAllTags().subscribe((result:{status:'0'|'1',data:any[]}) => {
-            if(result.status == '0'){
+        this.service.getAllTags().subscribe((result: { status: '0' | '1', data: any[] }) => {
+            if (result.status == '0') {
                 this.tags = result.data;
             }
         })
@@ -43,16 +43,16 @@ export class HomePage implements OnInit {
     }
 
     searchCommit(pageIndex = 1) {
-        this.service.getContentList(pageIndex).subscribe((result:{list:any[],totalCount:number}) => {
+        this.service.getContentList(pageIndex).subscribe((result: { list: any[], totalCount: number }) => {
             this.groups = result.list;
             this.currenPage = pageIndex;
-            this.totalePage = Math.ceil(result.totalCount/10)
+            this.totalePage = Math.ceil(result.totalCount / 10)
         });
     }
 
     ngAfterViewInit() {
         this.content.ionScrollEnd.subscribe((result => {
-            if (!result)return;
+            if (!result) return;
             if (result.scrollTop > 200) {
                 this.isShowUp = true;
             } else {
@@ -76,14 +76,14 @@ export class HomePage implements OnInit {
         })
     }
 
-    openTagSearch(tag:{id:string,label:string}) {
+    openTagSearch(tag: { id: string, label: string }) {
         this.navCtrl.push(TagSearchPage, tag, {
             animate: true,
         })
     }
 
-    delete(o_index:number,i_index:number){
-        this.groups[o_index].group.splice(i_index,1);
+    delete(o_index: number, i_index: number) {
+        this.groups[o_index].group.splice(i_index, 1);
     }
 
 
